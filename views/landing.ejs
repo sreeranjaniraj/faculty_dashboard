@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+    <body>
+        
+        <div class="container">
+             <h1 class="text-center" style="color:white;">Welcome to Faculty Dashboard</h1>
+             <%- include('partials/alerts') %>
+             
+            <div class="row mt-3">
+                <div class="col-md-5">
+                    <img src="https://www.pngitem.com/pimgs/m/539-5392274_amrita-university-logo-hd-png-download.png" height="250px" style="margin-top:9px; margin-left:50px;">
+                </div>
+                <div class="col-md-3 mx-auto text-center p-4">
+                    <div class="mt-3">
+                        <a href="/auth/admin-login" class="btn btn-block btn-primary">Admin Login</a>
+                    </div>
+                    
+                     <div class="mt-3">
+                        <a href="/auth/user-login" class="btn btn-block btn-primary">User Login</a>
+                    </div>
+                    
+                     <div class="mt-3">
+                        <a href="/auth/user-signup" class="btn btn-block btn-primary">User Sign Up</a>
+                    </div>
+
+                    <div class="mt-3">
+                        <a href="/auth/admin-signup" class="btn btn-block btn-primary">Admin Sign Up</a>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <a href="/books/all/all/1" class="btn btn-block btn-primary">Browse Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </body>
+       
+       <%- include('partials/footer') %>
