@@ -12,6 +12,9 @@ router.get("/user/:page", middleware.isLoggedIn, userController.getUserDashboard
 // user -> profile
 router.get("/user/:page/profile", middleware.isLoggedIn, userController.getUserProfile);
 
+router.get("/user/todo",middleware.isLoggedIn, userController.gettodo);
+
+
 //user -> upload image
 router.post("/user/1/image", middleware.isLoggedIn, userController.postUploadUserImage);
 
@@ -23,6 +26,7 @@ router.put("/user/1/update-profile", middleware.isLoggedIn, userController.putUp
 
 //user -> notification
 router.get("/user/1/notification", middleware.isLoggedIn, userController.getNotification);
+
 
 /*
 

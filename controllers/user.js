@@ -13,56 +13,22 @@ const User = require("../models/user"),
 //const deleteImage = require('../utils/delete_image');
 
 // GLOBAL_VARIABLES
-//const PER_PAGE = 5;
+const PER_PAGE = 5;
 
 //user -> dashboard
 exports.getUserDashboard = async(req, res, next) => {
-    var page = req.params.page || 1;
-    const user_id = req. user._id;
-
-    try {
-        // fetch user info from db and populate it with related book issue
-        const user = await User.findById(user_id);
-
-        if(user.bookIssueInfo.length > 0) {
-            const issues = await Issue.find({"user_id.id" : user._id});
-
-            for(let issue of issues) {
-                if(issue.book_info.returnDate < Date.now()) {
-                    user.violatonFlag = true;
-                    user.save();
-                    req.flash("warning", "You are flagged for not returning " + issue.book_info.title + " in time");
-                    break;
-                }
-            }
-        }
-        const activities = await Activity
-            .find({"user_id.id": req.user._id})
-            .sort('-entryTime')
-            .skip((PER_PAGE * page) - PER_PAGE)
-            .limit(PER_PAGE);
-
-        const activity_count = await Activity
-            .find({"user_id.id": req.user._id})
-            .countDocuments();
-
-        res.render("user/index", {
-            user : user,
-            current : page,
-            pages: Math.ceil(activity_count / PER_PAGE),
-            activities : activities,
-        });
-    } catch(err) {
-        console.log(err);
-        return res.redirect('back');
-    }
+    
+     res.render("user/index");
+    
 }
 
 // user -> profile
 exports.getUserProfile = (req, res, next) => {
     res.render("user/profile");
 }
-
+exports.gettodo = (req, res, next) => {
+    res.render("user/todo");
+}
 // user -> update/change password
 exports.putUpdatePassword = async(req, res, next) => {
     const username = req.user.username;
@@ -176,6 +142,7 @@ exports.getNotification = async(req, res, next) => {
 }
 
 //user -> issue a book
+/*
 exports.postIssueBook = async(req, res, next) => {
     if(req.user.violationFlag) {
         req.flash("error", "You are flagged for violating rules/delay on returning books/paying fines. Untill the flag is lifted, You can't issue any books");
@@ -241,7 +208,7 @@ exports.postIssueBook = async(req, res, next) => {
         return res.redirect("back");
     }
 }
-
+*/
 // user -> show return-renew page
 exports.getShowRenewReturn = async(req, res, next) => {
     const user_id = req.user._id;
